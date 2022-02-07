@@ -66,6 +66,7 @@
     "minimatch": "^3.0.5",
     "ms": "^2.1.2",
     "natural-compare": "^1.4.0",
+    "node-fetch": "^3.2.0",
     "once": "^1.4.0",
     "optionator": "^0.9.1",
     "parent-module": "^1.0.1",
