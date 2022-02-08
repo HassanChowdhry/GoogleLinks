@@ -1,0 +1,37 @@
+{
+	"info": {
+		"_postman_id": "eeb148e3-33f9-4f56-a50c-c8965b259c96",
+		"name": "Google-Links",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GoogleResults-RapidAPI",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {},
+				"strictSSL": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://google-search3.p.rapidapi.com/api/v1/search/q=cats",
+					"protocol": "https",
+					"host": [
+						"google-search3",
+						"p",
+						"rapidapi",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"search",
+						"q=cats"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

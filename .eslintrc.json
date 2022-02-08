@@ -20,6 +20,7 @@
         "no-trailing-spaces": "off",
         "padded-blocks": "off",
         "no-param-reassign":"off",
-        "max-len":"off"
+        "max-len":"off",
+        "no-console":"off"
     }
 }
