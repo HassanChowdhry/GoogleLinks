@@ -3,15 +3,17 @@ import fetch from 'node-fetch';
 
 import xlsx from 'xlsx';
 
-fetch('https://google-search3.p.rapidapi.com/api/v1/search/q=cats', {
+const search = 'q=dogs&num=100';
+
+fetch(`https://google-search3.p.rapidapi.com/api/v1/search/${search}`, {
   method: 'GET',
   headers: {
-    // key
+    // key    
   },
 })
   .then((res) => res.json())
   .then((res) => {
-    console.log(res);
+    // console.log(res);
     dataParsor(res);
   })
   .catch((error) => console.log('error', error));
