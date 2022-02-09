@@ -1,23 +1,34 @@
-const xlsx = require('xlsx');
+/* eslint-disable no-use-before-define */
+import fetch from 'node-fetch';
 
-let myHeaders = new Headers();
+import xlsx from 'xlsx';
 
-let requestOptions = {
+fetch('https://google-search3.p.rapidapi.com/api/v1/search/q=cats', {
   method: 'GET',
-  headers: myHeaders,
-  redirect: 'follow',
-};
-
-fetch('https://google-search3.p.rapidapi.com/api/v1/search/q=cats', requestOptions)
-  .then((response) => response.json())
-  .then((result) => console.log(result))
+  headers: {
+    // key
+  },
+})
+  .then((res) => res.json())
+  .then((res) => {
+    console.log(res);
+    dataParsor(res);
+  })
   .catch((error) => console.log('error', error));
 
-let fileName = 'GoogleLinks.xlsx';
-let wsName = 'results';
+const fileName = 'GoogleLinks.xlsx';
+const workSheetName = 'results';
+const workBook = xlsx.utils.book_new();
 
-let wb = xlsx.utils.book_new();
-let ws = xlsx.utils.aoa_to_sheet();
+function dataParsor(data) {
+  let content = [['Title', 'Links']];
 
-xlsx.utils.book_append_sheet(wb, ws, wsName);
-xlsx.writeFile(wb, fileName);
+  data.results.forEach((website, index) => {
+    content[index + 1] = [website.title];
+    content[index + 1].push(website.link); 
+  });
+  let workSheet = xlsx.utils.aoa_to_sheet(content);
+
+  xlsx.utils.book_append_sheet(workBook, workSheet, workSheetName);
+  xlsx.writeFile(workBook, fileName);
+}
