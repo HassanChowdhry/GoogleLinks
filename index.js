@@ -4,11 +4,21 @@ import fetch from 'node-fetch';
 
 import xlsx from 'xlsx';
 
-import dotenv from 'dotenv';
-
 import inquirer from 'inquirer';
 
+import dotenv from 'dotenv';
+
 dotenv.config();
+
+class SearchItem {
+
+  constructor(title, description, link) {
+    this.title = title;
+    this.description = description;
+    this.link = link;
+  }
+
+}
 
 let searchName;
 let searchNumber; 
@@ -41,7 +51,6 @@ await searchNameGetter();
 await searchNumberGetter();
 
 const search = `q=${searchName}&num=${searchNumber}`;
-
 // convert to async await
 fetch(`https://google-search3.p.rapidapi.com/api/v1/search/${search}`, {
   method: 'GET',
@@ -50,28 +59,29 @@ fetch(`https://google-search3.p.rapidapi.com/api/v1/search/${search}`, {
   },
 })
   .then((res) => res.json())
-  .then((res) => {
-    // console.log(res);
-    dataParsor(res);
-  })
+  .then((res) => createListOfSearchItem(res))
+  .then((searchItems) => listToArrayOfArray(searchItems))
+  .then((arrayOfArray) => createExcel(arrayOfArray))
   .catch((error) => console.log('error', error));
   
-// split into two parts
-const results = [];
-function dataParsor(data) {
-  data.results.forEach((website) => {
-    results.push({
-      'title': website.title,
-      'link': website.link,
-      'description': website.description,
-    });
-  });
+function createListOfSearchItem(data) {
+  return data.results.map((item) => new SearchItem(item.title, item.description, item.link));
 }
-console.log(results);
 
-// const fileName = 'GoogleLinks.xlsx';
-// const workSheetName = 'results';
-// const workBook = xlsx.utils.book_new();
-// let workSheet = xlsx.utils.aoa_to_sheet(); // array of arrays
-// xlsx.utils.book_append_sheet(workBook, workSheet, workSheetName);
-// xlsx.writeFile(workBook, fileName);
+function listToArrayOfArray(searchItems) {
+  const results = [['Title', 'Links']];
+  searchItems.forEach((searchItem) => {
+    results.push([searchItem.title, searchItem.link]);
+  });
+  return results;
+}
+
+function createExcel(arrayOfArray) {
+  const fileName = 'GoogleLinks.xlsx';
+  const workSheetName = 'results';
+  const workBook = xlsx.utils.book_new();
+  let workSheet = xlsx.utils.aoa_to_sheet(arrayOfArray);
+  xlsx.utils.book_append_sheet(workBook, workSheet, workSheetName);
+  xlsx.writeFile(workBook, fileName);
+}
+// CREATE A GIST OF INQUIRER!! 
