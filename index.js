@@ -11,6 +11,7 @@ import dotenv from 'dotenv';
 // import SearchItem from './SearchItem';
 
 dotenv.config();
+
 class SearchItem {
 
   constructor(title, description, link) {
@@ -22,31 +23,22 @@ class SearchItem {
 }
 
 let searchName = (await inquirer.prompt({
+  // TODO: validate user input
+
   name: 'search_name',
   type: 'input',
   message: 'What do you want to search in google?', 
 })).search_name;
 
 let searchNumber = (await inquirer.prompt({
+  // TODO: validate user input
+
   name: 'search_number',
   type: 'input',
   message: 'How many search results do you want? (max 100)', 
 })).search_number;
 
 const search = `q=${searchName}&num=${searchNumber}`;
-// convert to async await
-// fetch(`https://google-search3.p.rapidapi.com/api/v1/search/${search}`, {
-//   method: 'GET',
-//   headers: {
-//     'x-rapidapi-key': process.env.API_KEY,
-//     'x-proxy-location': 'US',
-//   },
-// })
-//   .then((res) => res.json())
-//   .then((res) => mapToSearchItems(res))
-//   .then((searchItems) => toExcelArrayOfArray(searchItems))
-//   .then((arrayOfArray) => createExcel(arrayOfArray))
-//   .catch((error) => console.log('error', error));
 
 async function loadSearchResults() {
   const response = await fetch(`https://google-search3.p.rapidapi.com/api/v1/search/${search}`, {
@@ -86,4 +78,3 @@ function createExcel(arrayOfArray) {
   xlsx.utils.book_append_sheet(workBook, workSheet, workSheetName);
   xlsx.writeFile(workBook, fileName);
 }
-// TODO: CREATE A GIST OF INQUIRER!! 
