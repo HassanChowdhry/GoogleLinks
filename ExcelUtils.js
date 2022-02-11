@@ -12,7 +12,7 @@ export function createExcel(arrayOfArray, searchName) {
   let name = searchName;
   name = name.split(' ').join('');
 
-  const fileName = `${name}.xlsx`;
+  const fileName = `output/${name}.xlsx`;
   const workSheetName = 'results';
   const workBook = xlsx.utils.book_new();
   let workSheet = xlsx.utils.aoa_to_sheet(arrayOfArray);
