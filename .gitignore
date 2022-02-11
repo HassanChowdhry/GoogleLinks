@@ -354,3 +354,7 @@ MigrationBackup/
 .vscode
 
 .env
+
+data.json
+
+*.xlsx
