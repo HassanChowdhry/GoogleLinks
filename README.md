@@ -10,4 +10,4 @@ Hello!
 
 ### This is an example of what it might look like
 
-![Screenshot (157)](https://user-images.githubusercontent.com/94680098/153534603-fb340bab-5263-4082-b3af-6b558721856b.png)
+![WhatsApp Image 2022-02-12 at 12 52 55 AM](https://user-images.githubusercontent.com/94680098/153661292-7d8bd8a4-589c-44f4-a8ce-4702bf44a7d5.jpeg)
