@@ -352,3 +352,9 @@ MigrationBackup/
 .idea
 
 .vscode
+
+.env
+
+data.json
+
+*.xlsx
