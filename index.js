@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 
 import { SearchItem } from './SearchItem.js';
 
-import { toExcelArrayOfArray, createExcel } from './ExcelUtils.js'
+import * as excelUtils from './ExcelUtils.js'
 
 dotenv.config();
 
@@ -42,5 +42,5 @@ const response = await (await fetch(`https://google-search3.p.rapidapi.com/api/v
 const searchItems = await response.results.map((item) => new SearchItem(item.title, item.description, item.link));
 
 // Create excel!
-const arrayOfArray = await toExcelArrayOfArray(searchItems);
-await createExcel(arrayOfArray, searchName);
+const arrayOfArray = await excelUtils.toExcelArrayOfArray(searchItems);
+await excelUtils.createExcel(arrayOfArray, searchName);
