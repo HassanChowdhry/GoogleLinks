@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 import inquirer from 'inquirer';
 import dotenv from 'dotenv';
 
-import { SearchItem } from './SearchItem.js';
+import { SearchItem } from './modal.js';
 
 import * as excelUtils from './ExcelUtils.js';
 
