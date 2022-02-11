@@ -1,12 +1,11 @@
-/* eslint-disable quote-props */
-/* eslint-disable no-use-before-define */
+/* eslint-disable quote-props, no-use-before-define, import/extensions */
 import fetch from 'node-fetch';
 import inquirer from 'inquirer';
 import dotenv from 'dotenv';
 
 import { SearchItem } from './SearchItem.js';
 
-import * as excelUtils from './ExcelUtils.js'
+import * as excelUtils from './ExcelUtils.js';
 
 dotenv.config();
 
@@ -26,7 +25,6 @@ let searchNumber = (await inquirer.prompt({
   message: 'How many search results do you want? (max 100)', 
 })).search_number;
 
-
 // Lets do some magic - API call
 const search = `q=${searchName}&num=${searchNumber}`;
 
@@ -42,5 +40,5 @@ const response = await (await fetch(`https://google-search3.p.rapidapi.com/api/v
 const searchItems = await response.results.map((item) => new SearchItem(item.title, item.description, item.link));
 
 // Create excel!
-const arrayOfArray = await excelUtils.toExcelArrayOfArray(searchItems);
-await excelUtils.createExcel(arrayOfArray, searchName);
+const arrayOfArray = excelUtils.toExcelArrayOfArray(searchItems);
+excelUtils.createExcel(arrayOfArray, searchName);
