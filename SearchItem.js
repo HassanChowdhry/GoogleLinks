@@ -1,4 +1,4 @@
-export default class SearchItem {
+export class SearchItem {
 
   constructor(title, description, link) {
     this.title = title;
