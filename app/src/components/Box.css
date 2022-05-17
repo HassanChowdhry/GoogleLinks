@@ -1,5 +1,5 @@
 .box {
-  contain: content;
+  padding: 0.5rem;
   width: 25rem;
   height: 475px;
   margin: 5rem auto;
@@ -22,10 +22,19 @@
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
-
   padding: 0 2rem;
   line-height: 25px;
-  
   letter-spacing: 0.02em;
   color: #98A1B1;
+}
+
+@media (max-width: 475px) {
+  .box {
+    width: 20rem;
+    height: 490px;
+  }
+
+  .box p {
+    padding: 0 1rem;
+  }
 }

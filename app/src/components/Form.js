@@ -17,7 +17,10 @@ function Form(props) {
         <input type="number" min="1" max="99" id="number" />
       </div>
 
-      <Button onClick={props.onSubmit}> Create Excel </Button>
+      <div className="excel-button-div">
+        <Button onClick={props.onSubmit}> Create Excel </Button>
+      </div>
+
     </form>
   );
 }

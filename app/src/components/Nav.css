@@ -14,3 +14,14 @@
   line-height: 34px;
   color: aliceblue;
 }
+
+@media (max-width: 475px) {
+  .navbar h3{  
+    margin-left: 1.5rem;
+  }
+
+  .button {
+    margin: auto 0.5rem;
+    width: 120px;
+  }
+}

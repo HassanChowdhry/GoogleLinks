@@ -55,7 +55,7 @@ function Box() {
             If everything went smoothly click the button below to create a new
             excel file.
           </p>
-
+          
           <Button onClick={onNewFileHandler}> New File </Button>
         </div>
       </Fragment>

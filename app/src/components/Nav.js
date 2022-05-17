@@ -3,14 +3,16 @@ import './Nav.css';
 
 function Nav() {
 
-  const onClickHandler = () => {console.log('clicked nav')};
+  const onClickHandler = () => {
+    window.open('mailto:mohammedchowdhry11@gmail.com');
+};
 
   return (
     <div className='navbar'>
       
       <h3> GoogleLinks </h3>
 
-      <Button onClick={onClickHandler}> Contact Me </Button>
+      <Button className='button' onClick={onClickHandler}> Contact Me </Button>
       
     </div>
   )
