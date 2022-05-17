@@ -1,0 +1,20 @@
+.btn{
+  width: 176px;
+  height: 47px;
+  margin: auto 3rem ;
+  color: aliceblue;
+  background: #58864C;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 30px;
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+
+.btn:hover {
+  transform: translateY(-7px);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+}
