@@ -9,18 +9,12 @@ function Box() {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    console.log('clicked create excel')
-
     setShowForm(false);
   }
 
-  const onDownloadHandler = () => {
-    console.log('clicked download file');
-  }
+  const onDownloadHandler = () => {} //? may use later on?
  
   const onNewFileHandler = () => {
-    console.log('clicked new file');
-
     setShowForm(true);
   }
 

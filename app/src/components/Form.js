@@ -13,7 +13,7 @@ function Form(props) {
       </div>
 
       <div>
-        <label htmlFor="number"> Number of Searches </label>
+        <label htmlFor="number"> Number of Search Results </label>
         <input type="number" min="1" max="99" id="number" />
       </div>
 

@@ -1,11 +1,11 @@
-.navbar{
+.navbar {
   display: flex;
   width: 100%;
   background: #1F2630;
-  justify-content:space-between;
+  justify-content: space-between;
 }
 
-.navbar h3{  
+.navbar h3 {
   margin-left: 3rem;
   font-family: 'Arial';
   font-style: normal;
@@ -16,7 +16,7 @@
 }
 
 @media (max-width: 475px) {
-  .navbar h3{  
+  .navbar h3 {
     margin-left: 1.5rem;
   }
 
