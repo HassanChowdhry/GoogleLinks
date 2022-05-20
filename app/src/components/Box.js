@@ -29,7 +29,7 @@ function Box() {
             you need in the excel sheet
           </p>
 
-          <Form onSubmit = {onSubmitHandler}/>
+          <Form onSubmit={onSubmitHandler}/>
         </Fragment>
       )}
 

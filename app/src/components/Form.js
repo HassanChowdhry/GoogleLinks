@@ -18,7 +18,7 @@ function Form(props) {
       </div>
 
       <div className="excel-button-div">
-        <Button onClick={props.onSubmit}> Create Excel </Button>
+        <Button onClick={props.onSubmit}>Create Excel</Button>
       </div>
 
     </form>
