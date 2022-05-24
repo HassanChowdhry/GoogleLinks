@@ -1,5 +1,5 @@
-import { SearchItem } from './modal';
-import * as excelUtils from './ExcelUtils.js';
+import { SearchItem } from "./modal";
+import * as excelUtils from "./ExcelUtils.js";
 
 export async function fetchSearches(searchName, searchNumber) {
   const response = await (
@@ -14,11 +14,11 @@ export async function fetchSearches(searchName, searchNumber) {
       }
     )
   ).json();
-  const searchItems = await response.results.map((item) => new SearchItem(item.title, item.description, item.link));
-  
-  console.log(searchItems);
+
+  const searchItems = await response.results.map(
+    (item) => new SearchItem(item.title, item.description, item.link)
+  );
 
   const arrayOfArray = excelUtils.toExcelArrayOfArray(searchItems);
   excelUtils.createExcel(arrayOfArray, searchName);
 }
-
