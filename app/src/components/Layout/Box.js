@@ -1,6 +1,6 @@
 import { useState, Fragment, useRef } from "react";
 
-import Form from "../Forms/Form";
+import MainForm from "../Forms/MainForm";
 import Button from "../UI/Button";
 import { fetchSearches } from "../../createExcelFiles/fetchSearches";
 import "./Box.css";
@@ -41,7 +41,7 @@ function Box() {
             you need in the excel sheet
           </p>
 
-          <Form
+          <MainForm
             queryRef={queryInputRef}
             searchNumberRef={searchNumberInputRef}
             onSubmit={onSubmitHandler}

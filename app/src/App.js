@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import Nav from "./components/Layout/Nav";
 import Box from "./components/Layout/Box";
 import ContactForm from "./components/Forms/ContactForm";
@@ -8,14 +8,20 @@ import ContactForm from "./components/Forms/ContactForm";
 function App() {
   return (
     <Fragment>
-      {/* <Route path='/'>   */}
-        <Nav />
-        <Box />
-      {/* </Route> */}
 
-      {/* <Route path='/contact-form'>
-        <ContactForm />
-      </Route> */}
+      <Route path='/' exact>
+        <Redirect to='/home'/>
+      </Route>  
+
+      <Route path='/home'>  
+        <Nav buttonName='Contact Me' buttonPath='/contact'/>
+        <Box/>
+      </Route>
+
+      <Route path='/contact'>
+        <Nav buttonName='Home' buttonPath='/home'/>
+        <ContactForm/>
+      </Route>
     </Fragment>
   );
 }

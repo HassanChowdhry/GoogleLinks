@@ -1,0 +1,51 @@
+.section {
+  width: 24rem;
+  height: auto;
+  margin: 5rem auto;
+  background: #1F2630;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 30px;
+  text-align: center;
+}
+
+.section h3 {
+  text-align: center;
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 41px;
+}
+
+.message {
+  resize: vertical;
+  width: 100%;
+  height: 60px;
+  background: #1F2630;
+  border: 2px solid #323A46;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  outline: none;
+  font-size: medium;
+  padding-top: 0.7rem;
+  color: #98A1B1;
+}
+
+.message-label {
+  margin-left: 1rem;
+  position: relative;
+  top: 10px;
+}
+
+.submit-div {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 1rem;
+}
+
+@media (max-width: 475px) {
+  .section {
+    width: 20rem;
+  }
+
+}
