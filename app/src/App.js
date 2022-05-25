@@ -6,11 +6,8 @@ import Box from './components/Box';
 function App() {
   return (
     <Fragment>
-
-    <Nav />
-
-    <Box />
-    
+    <Nav/>
+    <Box/>   
     </Fragment>
   );
 }

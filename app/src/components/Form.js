@@ -3,7 +3,7 @@ import Button from "./UI/Button";
 
 import "./Form.css";
 
-function Form(props) {
+function Form({onSubmit}) {
   return (
     <form className="form">
 
@@ -18,7 +18,7 @@ function Form(props) {
       </div>
 
       <div className="excel-button-div">
-        <Button onClick={props.onSubmit}>Create Excel</Button>
+        <Button onClick={onSubmit}>Create Excel</Button>
       </div>
 
     </form>
