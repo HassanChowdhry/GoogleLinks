@@ -9,8 +9,8 @@ function App() {
   return (
     <Fragment>
       {/* <Route path='/'>   */}
-        <Nav />
-        <Box />
+        <Nav/>
+        <Box/>
       {/* </Route> */}
 
       {/* <Route path='/contact-form'>
