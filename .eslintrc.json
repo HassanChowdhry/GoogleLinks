@@ -21,6 +21,7 @@
         "padded-blocks": "off",
         "no-param-reassign":"off",
         "max-len":"off",
-        "no-console":"off"
+        "no-console":"off",
+        "eslint-disable import/prefer-default-export":"off"
     }
 }
