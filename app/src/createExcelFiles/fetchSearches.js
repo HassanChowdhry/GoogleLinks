@@ -1,5 +1,5 @@
 import { SearchItem } from "./modal";
-import * as excelUtils from "./ExcelUtils.js";
+import { mapToExcelArray } from "./ExcelUtils";
 
 export async function fetchSearches(searchName, searchNumber) {
   const response = await (
@@ -18,7 +18,8 @@ export async function fetchSearches(searchName, searchNumber) {
   const searchItems = await response.results.map(
     (item) => new SearchItem(item.title, item.description, item.link)
   );
+  
+  const arrayOfArray = mapToExcelArray(searchItems);  
 
-  const arrayOfArray = excelUtils.toExcelArrayOfArray(searchItems);
-  excelUtils.createExcel(arrayOfArray, searchName);
+  return arrayOfArray;
 }

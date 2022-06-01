@@ -1,30 +1,58 @@
+/* eslint-disable no-undef */
 import { useState, Fragment, useRef } from "react";
 
 import Form from "../Forms/Form";
 import Button from "../UI/Button";
+import ErrorModal from "../UI/ErrorModal";
 import { fetchSearches } from "../../createExcelFiles/fetchSearches";
+import { createExcel } from "../../createExcelFiles/ExcelUtils";
 import "./Box.css";
 
 function Box() {
   const queryInputRef = useRef();
   const searchNumberInputRef = useRef();
   const [showForm, setShowForm] = useState(true);
-  // const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [errorText, setErrorText] = useState(false);
 
-  const onSubmitHandler = (event) => {
+  const onSubmitHandler = async (event) => {
     event.preventDefault();
+    let queryInput = queryInputRef.current.value;
+    let searchNumberInput = searchNumberInputRef.current.value;
 
     if (
-      queryInputRef.current.value.length > 0 &&
-      searchNumberInputRef.current.value >= 1 &&
-      searchNumberInputRef.current.value <= 99
+      queryInput.length > 0 &&
+      searchNumberInput >= 1 &&
+      searchNumberInput <= 99
     ) {
-      fetchSearches(queryInputRef.current.value,searchNumberInputRef.current.value);
-      // setShowForm(false);
+      setIsLoading(true);
+      try {
+        const googleResult = await fetchSearches(queryInput, searchNumberInput);
+        createExcel(googleResult, queryInput);
+
+      } catch {
+        setError(true);
+        setErrorText("Could not fetch searches");
+      }
+      setIsLoading(false);
+      setShowForm(false);
+  
+    } else if (queryInput.length < 1) {
+      setError(true);
+      setErrorText("To fetch searches you need to add a query");
+    
+    } else if (searchNumberInput < 1 || searchNumberInput > 99) {
+      setError(true);
+      setErrorText("Please enter a search number between 1 and 99");
     }
   };
 
   const onDownloadHandler = () => {}; //? may use later on?
+
+  const onCloseModal = () => {
+    setError(false);
+  };
 
   const onNewFileHandler = () => {
     setShowForm(true);
@@ -34,7 +62,9 @@ function Box() {
     <div className="box">
       <h3> GoogleLinks </h3>
 
-      {showForm && (
+      {error && <ErrorModal error={errorText} onClose={onCloseModal} />}
+
+      {!isLoading && showForm && (
         <Fragment>
           <p>
             Create an excel sheet by entering a query and the number of entries
@@ -49,7 +79,9 @@ function Box() {
         </Fragment>
       )}
 
-      {!showForm && (
+      {isLoading && <div className="loader" />}
+
+      {!isLoading && !showForm && (
         <Fragment>
           <div>
             <p>Thank you for using Google Links!</p>

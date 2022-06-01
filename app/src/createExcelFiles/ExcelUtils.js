@@ -1,11 +1,12 @@
 import * as XLSX from "xlsx";
 
-export function toExcelArrayOfArray(searchItems) {
-  const results = [["Title", "Links"]];
-  searchItems.forEach((searchItem) => {
-    results.push([searchItem.title, searchItem.link]);
-  });
-  return results;
+export function mapToExcelArray(searchItems) {
+  const result = searchItems.map((searchItem) => [
+    searchItem.title,
+    searchItem.link,
+  ]);
+  result.unshift(["Title", "Links"]);
+  return result;
 }
 
 export function createExcel(arrayOfArray, searchName) {
