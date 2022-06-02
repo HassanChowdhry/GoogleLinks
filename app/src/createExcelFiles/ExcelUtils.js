@@ -9,7 +9,8 @@ export function mapToExcelArray(searchItems) {
   return result;
 }
 
-export function createExcel(arrayOfArray, searchName) {
+export function createExcel(googleResults, searchName) {
+  const arrayOfArray = mapToExcelArray(googleResults);
   let name = searchName;
   name = name.split(" ").join("");
 

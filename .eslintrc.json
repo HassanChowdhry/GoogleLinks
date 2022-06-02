@@ -19,9 +19,9 @@
         "prefer-const": "off",
         "no-trailing-spaces": "off",
         "padded-blocks": "off",
-        "no-param-reassign":"off",
-        "max-len":"off",
-        "no-console":"off",
-        "eslint-disable import/prefer-default-export":"off"
+        "no-param-reassign": "off",
+        "max-len": "off",
+        "no-console": "off",
+        "eslint-disable import/prefer-default-export": "off"
     }
 }

@@ -4,8 +4,8 @@ import { useState, Fragment, useRef } from "react";
 import Form from "../Forms/Form";
 import Button from "../UI/Button";
 import ErrorModal from "../UI/ErrorModal";
-import { fetchSearches } from "../../createExcelFiles/fetchSearches";
-import { createExcel } from "../../createExcelFiles/ExcelUtils";
+import { fetchSearches } from "../../CreateExcelFiles/fetchSearches";
+import { createExcel } from "../../CreateExcelFiles/excelUtils";
 import "./Box.css";
 
 function Box() {
@@ -28,7 +28,8 @@ function Box() {
     ) {
       setIsLoading(true);
       try {
-        const googleResult = await fetchSearches(queryInput, searchNumberInput);
+        const googleResult = await fetchSearches(queryInput, searchNumberInput); 
+
         createExcel(googleResult, queryInput);
 
       } catch {

@@ -2,7 +2,7 @@ import './ErrorModal.css';
 
 function ErrorModal({ onClose, error }) {
   return (
-      <div className='modal-container' onClick={onClose}>
+      <div className='modal-container'>
         <div className='modal'>
         
         <div className="modal-header">
