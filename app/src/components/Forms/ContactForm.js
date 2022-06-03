@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import emailjs from '@emailjs/browser';
+import emailjs from 'emailjs-com';
 import Button from '../UI/Button';
 import Input from '../UI/Input'
 import Form from './Form';
@@ -10,17 +10,17 @@ function ContactForm() {
   const emailInputRef = useRef();
   const subjectInputRef = useRef();
   const messageInputRef = useRef();
-
+  
   const sendEmail = (event) => {
     event.preventDefault();
 
-    emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', event.target, 'YOUR_PUBLIC_KEY')
+    emailjs.sendForm(process.env.REACT_APP_SERVICE_ID, process.env.REACT_APP_TEMPLATE_ID, event.target, process.env.REACT_APP_PUBLIC_KEY)
     .then((result) => {
         console.log(result.text);
     }, (error) => {
         console.log(error.text);
     });
-    event.target.reset();
+    // event.target.reset();
   }
   
   return (
@@ -31,26 +31,29 @@ function ContactForm() {
         <h3>Contact Me</h3>
 
         <Input ref={nameInputRef} input={{
-          id:"name",
-          type:"text",
-          label:'your name'
+          id: "name",
+          type: "text",
+          label: 'your name',
+          name: 'from_name'
         }} />
         
         <Input ref={emailInputRef} input={{
-          id:"email",
-          type:"email",
-          label:'your email'
+          id: "email",
+          type: "email",
+          label: 'your email',
+          name: 'email'
         }} />
        
         <Input ref={subjectInputRef} input={{
           id:"subject",
           type:"text",
-          label:'subject of email'
+          label:'subject of email',
+          name: 'subject'
         }} />
 
         <div>
           <label className='message-label' htmlFor='message'>your message</label>
-          <textarea ref={messageInputRef} id='message' className='message'/>
+          <textarea ref={messageInputRef} id='message' className='message' name='message'/>
         </div> 
 
         <div className='submit-div'>

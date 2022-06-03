@@ -1,5 +1,5 @@
 .section {
-  width: 24rem;
+  width: 28rem;
   height: auto;
   margin: 5rem auto;
   background: #1F2630;
@@ -45,7 +45,7 @@
 
 @media (max-width: 475px) {
   .section {
-    width: 20rem;
+    width: 22rem;
   }
 
 }
