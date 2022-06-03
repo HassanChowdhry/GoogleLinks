@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { useState, Fragment, useRef } from "react";
 
 import Form from "../Forms/Form";
