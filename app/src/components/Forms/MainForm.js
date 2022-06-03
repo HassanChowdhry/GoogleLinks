@@ -29,7 +29,7 @@ function MainForm({ onSubmit, queryRef, searchNumberRef }) {
       />
 
       <div className="excel-button-div">
-        <Button onClick={onSubmit}> Create Excel </Button>
+        <Button onClick={onSubmit}>Create Excel</Button>
       </div>
     </Form>
   );

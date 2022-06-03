@@ -57,7 +57,7 @@ function Box() {
               If your excel file was not created, click the button below to
               download it manually
             </p>
-            <Button onClick={onDownloadHandler}> Download File </Button>
+            <Button onClick={onDownloadHandler}>Download File</Button>
           </div>
 
           <div>
@@ -66,7 +66,7 @@ function Box() {
               excel file.
             </p>
 
-            <Button onClick={onNewFileHandler}> New File </Button>
+            <Button onClick={onNewFileHandler}>New File</Button>
           </div>
         </Fragment>
       )}
