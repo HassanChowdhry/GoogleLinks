@@ -10,7 +10,7 @@ import "./Box.css";
 
 function Box() {
   const queryInputRef = useRef();
-  const searchNumberInputRef = useRef();
+  const numberOfResultsInputRef = useRef();
   const [showForm, setShowForm] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -19,16 +19,16 @@ function Box() {
   const onSubmitHandler = async (event) => {
     event.preventDefault();
     let queryInput = queryInputRef.current.value;
-    let searchNumberInput = searchNumberInputRef.current.value;
+    let numberOfResultsInput = numberOfResultsInputRef.current.value;
 
     if (
       queryInput.length > 0 &&
-      searchNumberInput >= 1 &&
-      searchNumberInput <= 99
+      numberOfResultsInput >= 1 &&
+      numberOfResultsInput <= 99
     ) {
       setIsLoading(true);
       try {
-        const googleResult = await search(queryInput, searchNumberInput); 
+        const googleResult = await search(queryInput, numberOfResultsInput); 
 
         createExcel(googleResult, queryInput);
 
@@ -43,7 +43,7 @@ function Box() {
       setError(true);
       setErrorText("To fetch searches you need to add a query");
     
-    } else if (searchNumberInput < 1 || searchNumberInput > 99) {
+    } else if (numberOfResultsInput < 1 || numberOfResultsInput > 99) {
       setError(true);
       setErrorText("Please enter a search number between 1 and 99");
     }
@@ -74,13 +74,13 @@ function Box() {
 
           <Form
             queryRef={queryInputRef}
-            searchNumberRef={searchNumberInputRef}
+            numberOfResultsRef={numberOfResultsInputRef}
             onSubmit={onSubmitHandler}
           />
         </Fragment>
       )}
 
-      {isLoading && <div className="loader" />}
+      {isLoading && <div className="loader"/>}
 
       {!isLoading && !showForm && (
         <Fragment>
@@ -90,7 +90,7 @@ function Box() {
               If your excel file was not created, click the button below to
               download it manually
             </p>
-            <Button onClick={onDownloadHandler}> Download File </Button>
+            <Button onClick={onDownloadHandler}>Download File</Button>
           </div>
 
           <div>
@@ -99,7 +99,7 @@ function Box() {
               excel file.
             </p>
 
-            <Button onClick={onNewFileHandler}> New File </Button>
+            <Button onClick={onNewFileHandler}>New File</Button>
           </div>
         </Fragment>
       )}

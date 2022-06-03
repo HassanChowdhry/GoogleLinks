@@ -8,7 +8,7 @@ function Nav() {
 
   return (
     <div className="navbar">
-      <h3> GoogleLinks </h3>
+      <h3>GoogleLinks</h3>
 
       <Button className="button" onClick={onClickHandler}>
         Contact Me

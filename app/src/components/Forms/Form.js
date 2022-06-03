@@ -4,7 +4,7 @@ import Input from "../UI/Input";
 
 import "./Form.css";
 
-function Form({ onSubmit, queryRef, searchNumberRef }) {
+function Form({ onSubmit, queryRef, numberOfResultsRef }) {
   return (
     <form className="form" onSubmit={onSubmit}>
       <Input
@@ -17,7 +17,7 @@ function Form({ onSubmit, queryRef, searchNumberRef }) {
       />
 
       <Input
-        ref={searchNumberRef}
+        ref={numberOfResultsRef}
         label="Number of Search Results"
         input={{
           id: "search-results",
@@ -28,7 +28,7 @@ function Form({ onSubmit, queryRef, searchNumberRef }) {
       />
 
       <div className="excel-button-div">
-        <Button onClick={onSubmit}> Create Excel </Button>
+        <Button onClick={onSubmit}>Create Excel</Button>
       </div>
     </form>
   );

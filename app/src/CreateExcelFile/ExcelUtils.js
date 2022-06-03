@@ -12,7 +12,7 @@ function toExcelArray(searchItems) {
 export function createExcel(searchItemsList, searchQuery) {
   const excelResultList = toExcelArray(searchItemsList);
   let name = searchQuery;
-  name = name.split(" ").join("-");
+  name = name.trim().split(" ").join("-");
 
   const fileName = `${name}.xlsx`;
   const workSheetName = "results";
