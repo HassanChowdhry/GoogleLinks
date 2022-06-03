@@ -1,6 +1,6 @@
 import * as XLSX from "xlsx";
 
-export function mapToExcelArray(searchItems) {
+function toExcelArray(searchItems) {
   const result = searchItems.map((searchItem) => [
     searchItem.title,
     searchItem.link,
@@ -9,15 +9,15 @@ export function mapToExcelArray(searchItems) {
   return result;
 }
 
-export function createExcel(googleResults, searchName) {
-  const arrayOfArray = mapToExcelArray(googleResults);
-  let name = searchName;
-  name = name.split(" ").join("");
+export function createExcel(searchItemsList, searchQuery) {
+  const excelResultList = toExcelArray(searchItemsList);
+  let name = searchQuery;
+  name = name.split(" ").join("-");
 
   const fileName = `${name}.xlsx`;
   const workSheetName = "results";
   const workBook = XLSX.utils.book_new();
-  let workSheet = XLSX.utils.aoa_to_sheet(arrayOfArray);
+  let workSheet = XLSX.utils.aoa_to_sheet(excelResultList);
   XLSX.utils.book_append_sheet(workBook, workSheet, workSheetName);
   XLSX.writeFile(workBook, fileName);
 }
