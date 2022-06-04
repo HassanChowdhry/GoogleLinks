@@ -4,7 +4,6 @@ import Nav from "./components/Layout/Nav";
 import Box from "./components/Layout/Box";
 import ContactForm from "./components/Forms/ContactForm";
 
-//! make contact page
 function App() {
   return (
     <Fragment>

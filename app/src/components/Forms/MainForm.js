@@ -5,7 +5,7 @@ import Form from "./Form";
 
 import "./MainForm.css";
 
-function MainForm({ onSubmit, queryRef, searchNumberRef }) {
+function MainForm({ onSubmit, queryRef, numberOfResultsRef }) {
   return (
     <Form onSubmit={onSubmit}>
       <Input
@@ -18,7 +18,7 @@ function MainForm({ onSubmit, queryRef, searchNumberRef }) {
       />
 
       <Input
-        ref={searchNumberRef}
+        ref={numberOfResultsRef}
         input={{
           id: "search-results",
           type: "number",
