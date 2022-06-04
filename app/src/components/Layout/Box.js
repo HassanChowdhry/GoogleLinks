@@ -2,29 +2,57 @@ import { useState, Fragment, useRef } from "react";
 
 import MainForm from "../Forms/MainForm";
 import Button from "../UI/Button";
-import { fetchSearches } from "../../createExcelFiles/fetchSearches";
+import ErrorModal from "../UI/ErrorModal";
+import { search } from "../../CreateExcelFile/GoogleSearch";
+import { createExcel } from "../../CreateExcelFile/ExcelUtils";
 import "./Box.css";
 
 function Box() {
   const queryInputRef = useRef();
-  const searchNumberInputRef = useRef();
+  const numberOfResultsInputRef = useRef();
   const [showForm, setShowForm] = useState(true);
-  // const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [errorText, setErrorText] = useState(false);
 
-  const onSubmitHandler = (event) => {
+  const onSubmitHandler = async (event) => {
     event.preventDefault();
+    let queryInput = queryInputRef.current.value.trim();
+    let numberOfResultsInput = numberOfResultsInputRef.current.value;
 
     if (
-      queryInputRef.current.value.length > 0 &&
-      searchNumberInputRef.current.value >= 1 &&
-      searchNumberInputRef.current.value <= 99
+      queryInput.length > 0 &&
+      numberOfResultsInput >= 1 &&
+      numberOfResultsInput <= 99
     ) {
-      fetchSearches(queryInputRef.current.value,searchNumberInputRef.current.value);
-      // setShowForm(false);
+      setIsLoading(true);
+      try {
+        const googleResult = await search(queryInput, numberOfResultsInput); 
+
+        createExcel(googleResult, queryInput);
+
+      } catch {
+        setError(true);
+        setErrorText("Could not fetch searches");
+      }
+      setIsLoading(false);
+      setShowForm(false);
+  
+    } else if (queryInput.length < 1) {
+      setError(true);
+      setErrorText("To fetch searches you need to add a query");
+    
+    } else if (numberOfResultsInput < 1 || numberOfResultsInput > 99) {
+      setError(true);
+      setErrorText("Please enter a search number between 1 and 99");
     }
   };
 
   const onDownloadHandler = () => {}; //? may use later on?
+
+  const onCloseModal = () => {
+    setError(false);
+  };
 
   const onNewFileHandler = () => {
     setShowForm(true);
@@ -34,7 +62,9 @@ function Box() {
     <div className="box">
       <h3> GoogleLinks </h3>
 
-      {showForm && (
+      {error && <ErrorModal error={errorText} onClose={onCloseModal} />}
+
+      {!isLoading && showForm && (
         <Fragment>
           <p>
             Create an excel sheet by entering a query and the number of entries
@@ -43,13 +73,15 @@ function Box() {
 
           <MainForm
             queryRef={queryInputRef}
-            searchNumberRef={searchNumberInputRef}
+            numberOfResultsRef={numberOfResultsInputRef}
             onSubmit={onSubmitHandler}
           />
         </Fragment>
       )}
 
-      {!showForm && (
+      {isLoading && <div className="loader"/>}
+
+      {!isLoading && !showForm && (
         <Fragment>
           <div>
             <p>Thank you for using Google Links!</p>
