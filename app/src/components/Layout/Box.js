@@ -17,7 +17,7 @@ function Box() {
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
-    let queryInput = queryInputRef.current.value;
+    let queryInput = queryInputRef.current.value.trim();
     let numberOfResultsInput = numberOfResultsInputRef.current.value;
 
     if (
