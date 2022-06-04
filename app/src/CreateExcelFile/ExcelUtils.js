@@ -1,7 +1,7 @@
 import * as XLSX from "xlsx";
 
-function toExcelArray(searchItems) {
-  const result = searchItems.map((searchItem) => [
+function toExcelArray(searchItemList) {
+  const result = searchItemList.map((searchItem) => [
     searchItem.title,
     searchItem.link,
   ]);
@@ -9,8 +9,8 @@ function toExcelArray(searchItems) {
   return result;
 }
 
-export function createExcel(searchItemsList, searchQuery) {
-  const excelResultList = toExcelArray(searchItemsList);
+export function createExcel(searchItemList, searchQuery) {
+  const excelResultList = toExcelArray(searchItemList);
   let name = searchQuery;
   name = name.trim().split(" ").join("-");
 
