@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import emailjs from 'emailjs-com';
 import Button from '../UI/Button';
 import Input from '../UI/Input'
@@ -11,7 +11,7 @@ function ContactForm() {
   const subjectInputRef = useRef();
   const messageInputRef = useRef();
 
-  const sendEmail = (event) => {
+  const sendEmail = async (event) => {
     event.preventDefault();
     let emailVerificationRegex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
     let name = nameInputRef.current.value.trim();
@@ -19,20 +19,24 @@ function ContactForm() {
     let subject = subjectInputRef.current.value.trim(); 
     let message = messageInputRef.current.value.trim();
   
-    if (name.length > 0 && email.test(emailVerificationRegex) && subject.length > 0 && message.length > 0) {
+    if (name.length > 0 && emailVerificationRegex.test(email) && subject.length > 0 && message.length > 0) {
+      
       try {
+        await emailjs.sendForm(process.env.REACT_APP_SERVICE_ID, process.env.REACT_APP_TEMPLATE_ID, event.target, process.env.REACT_APP_PUBLIC_KEY)
+        console.log('works')
+        event.target.reset();
 
       } catch {
-        
+        console.log('error')
       }
-      // emailjs.sendForm(process.env.REACT_APP_SERVICE_ID, process.env.REACT_APP_TEMPLATE_ID, event.target, process.env.REACT_APP_PUBLIC_KEY)
-      // .then((result) => {
-      //     console.log(result.text);
-      // }, (error) => {
-      //     console.log(error.text);
-      // });
-      // event.target.reset();
-
+    } else if (name.length <= 0) {
+      // error
+    } else if (!emailVerificationRegex.test(email)) {
+      // error
+    } else if (subject.length <= 0) {
+      // error
+    } else if (message.length <= 0) {
+      // error
     }
   }
   
