@@ -5,6 +5,7 @@ import Input from "../UI/Input";
 import ErrorModal from "../UI/ErrorModal";
 import Form from "./Form";
 import "./ContactForm.css";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 function ContactForm() {
   const nameInputRef = useRef();
@@ -39,17 +40,15 @@ function ContactForm() {
           process.env.REACT_APP_PUBLIC_KEY
         );
         event.target.reset();
-      
       } catch {
         setError(true);
-        setErrorText("");
-        console.log("error");
+        setErrorText("Could not send message");
       }
       setIsLoading(false);
 
     } else if (name.length <= 0) {
       setError(true);
-      setErrorText("Please enter you name");
+      setErrorText("Please enter your name");
     
     } else if (!emailVerificationRegex.test(email)) {
       setError(true);
@@ -75,7 +74,7 @@ function ContactForm() {
 
       {error && <ErrorModal error={errorText} onClose={onCloseModal} />}
 
-      {isLoading && <div className="loader" />}
+      {isLoading && <LoadingSpinner />}
 
       {!isLoading && (
         <Form onSubmit={sendEmail}>

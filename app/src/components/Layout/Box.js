@@ -6,6 +6,7 @@ import ErrorModal from "../UI/ErrorModal";
 import { search } from "../../CreateExcelFile/GoogleSearch";
 import { createExcel } from "../../CreateExcelFile/ExcelUtils";
 import "./Box.css";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 function Box() {
   const queryInputRef = useRef();
@@ -27,21 +28,22 @@ function Box() {
     ) {
       setIsLoading(true);
       try {
-        const googleResult = await search(queryInput, numberOfResultsInput); 
+        const googleResultList = await search(queryInput, numberOfResultsInput);
 
-        createExcel(googleResult, queryInput);
-
+        createExcel(googleResultList, queryInput);
+     
       } catch {
         setError(true);
         setErrorText("Could not fetch searches");
       }
+     
       setIsLoading(false);
       setShowForm(false);
-  
+   
     } else if (queryInput.length < 1) {
       setError(true);
       setErrorText("To fetch searches you need to add a query");
-    
+   
     } else if (numberOfResultsInput < 1 || numberOfResultsInput > 99) {
       setError(true);
       setErrorText("Please enter a search number between 1 and 99");
@@ -79,7 +81,7 @@ function Box() {
         </Fragment>
       )}
 
-      {isLoading && <div className="loader"/>}
+      {isLoading && <LoadingSpinner />}
 
       {!isLoading && !showForm && (
         <Fragment>

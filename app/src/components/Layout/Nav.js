@@ -7,10 +7,8 @@ function Nav({ buttonName, buttonPath }) {
     <div className="navbar">
       <h3>GoogleLinks</h3>
 
-      <Link className='link' to={buttonPath}> 
-        <Button className="button">
-          {buttonName}
-        </Button>
+      <Link className="link" to={buttonPath}>
+        <Button className="button">{buttonName}</Button>
       </Link>
     </div>
   );

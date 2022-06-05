@@ -7,19 +7,18 @@ import ContactForm from "./components/Forms/ContactForm";
 function App() {
   return (
     <Fragment>
-
-      <Route path='/' exact>
-        <Redirect to='/home'/>
-      </Route>  
-
-      <Route path='/home'>  
-        <Nav buttonName='Contact Me' buttonPath='/contact'/>
-        <Box/>
+      <Route path="/" exact>
+        <Redirect to="/home" />
       </Route>
 
-      <Route path='/contact'>
-        <Nav buttonName='Home' buttonPath='/home'/>
-        <ContactForm/>
+      <Route path="/home">
+        <Nav buttonName="Contact Me" buttonPath="/contact" />
+        <Box />
+      </Route>
+
+      <Route path="/contact">
+        <Nav buttonName="Home" buttonPath="/home" />
+        <ContactForm />
       </Route>
     </Fragment>
   );

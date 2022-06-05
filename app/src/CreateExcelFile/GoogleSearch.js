@@ -16,7 +16,7 @@ export async function search(searchQuery, numberOfResults) {
 
   const searchItemList = await response.results.map(
     (item) => new SearchItem(item.title, item.description, item.link)
-  ); 
+  );
 
   return searchItemList;
 }

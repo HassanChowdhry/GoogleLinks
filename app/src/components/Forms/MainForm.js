@@ -13,7 +13,7 @@ function MainForm({ onSubmit, queryRef, numberOfResultsRef }) {
         input={{
           id: "query",
           type: "text",
-          label:"Search Query"
+          label: "Search Query",
         }}
       />
 
@@ -22,7 +22,7 @@ function MainForm({ onSubmit, queryRef, numberOfResultsRef }) {
         input={{
           id: "search-results",
           type: "number",
-          label:"Number of Search Results",
+          label: "Number of Search Results",
           min: "1",
           max: "99",
         }}
