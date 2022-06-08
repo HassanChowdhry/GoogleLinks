@@ -1,4 +1,4 @@
-import { SearchItem } from "./Model";
+import { SearchItem } from "../Model/Model";
 
 export async function search(searchQuery, numberOfResults) {
   const response = await (
@@ -7,7 +7,7 @@ export async function search(searchQuery, numberOfResults) {
       {
         method: "GET",
         headers: {
-          "x-rapidapi-key": process.env.REACT_APP_API_KEY,
+          "x-rapidapi-key": process.env.REACT_APP_API_KE,
           "x-proxy-location": "US",
         },
       }

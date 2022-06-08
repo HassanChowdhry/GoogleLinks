@@ -3,8 +3,8 @@ import { useState, Fragment, useRef } from "react";
 import Form from "../Forms/Form";
 import Button from "../UI/Button";
 import ErrorModal from "../UI/ErrorModal";
-import { search } from "../../CreateExcelFile/GoogleSearch";
-import { createExcel } from "../../CreateExcelFile/ExcelUtils";
+import * as googleService from "../../Service/GoogleService";
+import * as excelUtils from "../../Service/ExcelUtils";
 import "./Box.css";
 
 function Box() {
@@ -27,11 +27,12 @@ function Box() {
     ) {
       setIsLoading(true);
       try {
-        const googleResult = await search(queryInput, numberOfResultsInput); 
+        const googleResultList = await googleService.search(queryInput, numberOfResultsInput); 
 
-        createExcel(googleResult, queryInput);
+        excelUtils.createExcel(googleResultList, queryInput);
 
-      } catch {
+      } catch(error) {
+        console.error(error);
         setError(true);
         setErrorText("Could not fetch searches");
       }
