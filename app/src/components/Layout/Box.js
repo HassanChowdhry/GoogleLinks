@@ -3,7 +3,7 @@ import { useState, Fragment, useRef } from "react";
 import MainForm from "../Forms/MainForm";
 import Button from "../UI/Button";
 import ErrorModal from "../UI/ErrorModal";
-import { search } from "../../CreateExcelFile/GoogleSearch";
+import { search } from "../../CreateExcelFile/GoogleService";
 import { createExcel } from "../../CreateExcelFile/ExcelUtils";
 import "./Box.css";
 import LoadingSpinner from "../UI/LoadingSpinner";
@@ -31,14 +31,15 @@ function Box() {
         const googleResultList = await search(queryInput, numberOfResultsInput);
 
         createExcel(googleResultList, queryInput);
-     
-      } catch {
+        
+        setShowForm(false);
+      } catch(err) {
+        console.error(err);
         setError(true);
         setErrorText("Could not fetch searches");
       }
      
       setIsLoading(false);
-      setShowForm(false);
    
     } else if (queryInput.length < 1) {
       setError(true);

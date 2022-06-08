@@ -34,13 +34,14 @@ function ContactForm() {
       setIsLoading(true);
       try {
         await emailjs.sendForm(
-          process.env.REACT_APP_SERVICE_ID,
+          process.env.REACT_APP_SERVICE_I,
           process.env.REACT_APP_TEMPLATE_ID,
           event.target,
           process.env.REACT_APP_PUBLIC_KEY
         );
         event.target.reset();
-      } catch {
+      } catch(err) {
+        console.log(err)
         setError(true);
         setErrorText("Could not send message");
       }

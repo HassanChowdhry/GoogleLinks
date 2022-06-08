@@ -1,7 +1,7 @@
-import React from "react";
+import {forwardRef} from "react";
 import "./Input.css";
 
-const Input = React.forwardRef(({ input, className }, ref) => {
+const Input = forwardRef(({ input, className }, ref) => {
   return (
     <div>
       <label className="label" htmlFor={input.id}>
