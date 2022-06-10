@@ -1,12 +1,12 @@
 import { useState, Fragment, useRef } from "react";
 
-import MainForm from "../Forms/MainForm";
-import Button from "../UI/Button";
-import ErrorModal from "../UI/ErrorModal";
-import { search } from "../../CreateExcelFile/GoogleService";
-import { createExcel } from "../../CreateExcelFile/ExcelUtils";
+import MainForm from "../form/MainForm";
+import Button from "../ui/Button";
+import ErrorModal from "../ui/ErrorModal";
+import * as googleService from "../../service/GoogleService";
+import * as excelUtils from "../../service/ExcelUtils";
+import LoadingSpinner from "../ui/LoadingSpinner";
 import "./Box.css";
-import LoadingSpinner from "../UI/LoadingSpinner";
 
 function Box() {
   const queryInputRef = useRef();
@@ -28,19 +28,17 @@ function Box() {
     ) {
       setIsLoading(true);
       try {
-        const googleResultList = await search(queryInput, numberOfResultsInput);
-
-        createExcel(googleResultList, queryInput);
-        
+        const googleResultList = await googleService.search(queryInput, numberOfResultsInput); 
+        excelUtils.createExcel(googleResultList, queryInput);
         setShowForm(false);
-      } catch(err) {
-        console.error(err);
+        
+      } catch(error) {
+        console.error(error);
         setError(true);
         setErrorText("Could not fetch searches");
       }
-     
       setIsLoading(false);
-   
+
     } else if (queryInput.length < 1) {
       setError(true);
       setErrorText("To fetch searches you need to add a query");

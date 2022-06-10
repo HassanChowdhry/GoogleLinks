@@ -1,8 +1,8 @@
 import { Fragment } from "react";
 import { Route, Redirect } from "react-router-dom";
-import Nav from "./components/Layout/Nav";
-import Box from "./components/Layout/Box";
-import ContactForm from "./components/Forms/ContactForm";
+import Nav from "./components/layout/Nav";
+import Box from "./components/layout/Box";
+import ContactForm from "./components/form/ContactForm";
 
 function App() {
   return (

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Button from "../UI/Button";
+import Button from "../ui/Button";
 import "./Nav.css";
 
 function Nav({ buttonName, buttonPath }) {

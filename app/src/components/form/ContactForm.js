@@ -1,11 +1,11 @@
 import { useRef, useState } from "react";
 import emailjs from "emailjs-com";
-import Button from "../UI/Button";
-import Input from "../UI/Input";
-import ErrorModal from "../UI/ErrorModal";
+import Button from "../ui/Button";
+import Input from "../ui/Input";
+import ErrorModal from "../ui/ErrorModal";
 import Form from "./Form";
+import LoadingSpinner from "../ui/LoadingSpinner";
 import "./ContactForm.css";
-import LoadingSpinner from "../UI/LoadingSpinner";
 
 function ContactForm() {
   const nameInputRef = useRef();
@@ -34,7 +34,7 @@ function ContactForm() {
       setIsLoading(true);
       try {
         await emailjs.sendForm(
-          process.env.REACT_APP_SERVICE_I,
+          process.env.REACT_APP_SERVICE_ID,
           process.env.REACT_APP_TEMPLATE_ID,
           event.target,
           process.env.REACT_APP_PUBLIC_KEY
