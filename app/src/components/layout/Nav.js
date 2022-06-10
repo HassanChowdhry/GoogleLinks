@@ -1,4 +1,4 @@
-import Button from "../UI/Button";
+import Button from "../ui/Button";
 import "./Nav.css";
 
 function Nav() {

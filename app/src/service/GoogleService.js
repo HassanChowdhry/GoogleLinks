@@ -1,4 +1,4 @@
-import { SearchItem } from "../Model/Model";
+import { SearchItem } from "../model/Model";
 
 export async function search(searchQuery, numberOfResults) {
   const response = await (

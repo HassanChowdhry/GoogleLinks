@@ -1,10 +1,10 @@
 import { useState, Fragment, useRef } from "react";
 
 import Form from "../Forms/Form";
-import Button from "../UI/Button";
-import ErrorModal from "../UI/ErrorModal";
-import * as googleService from "../../Service/GoogleService";
-import * as excelUtils from "../../Service/ExcelUtils";
+import Button from "../ui/Button";
+import ErrorModal from "../ui/ErrorModal";
+import * as googleService from "../../service/GoogleService";
+import * as excelUtils from "../../service/ExcelUtils";
 import "./Box.css";
 
 function Box() {
