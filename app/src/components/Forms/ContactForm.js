@@ -40,8 +40,8 @@ function ContactForm() {
           process.env.REACT_APP_PUBLIC_KEY
         );
         event.target.reset();
-      } catch(err) {
-        console.log(err)
+      } catch(error) {
+        console.error(error);
         setError(true);
         setErrorText("Could not send message");
       }
