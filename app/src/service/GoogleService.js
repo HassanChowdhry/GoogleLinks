@@ -7,7 +7,7 @@ export async function search(searchQuery, numberOfResults) {
       {
         method: "GET",
         headers: {
-          "x-rapidapi-key": process.env.REACT_APP_API_KE,
+          "x-rapidapi-key": process.env.REACT_APP_API_KEY,
           "x-proxy-location": "US",
         },
       }
