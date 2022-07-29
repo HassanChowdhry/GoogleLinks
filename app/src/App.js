@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import { Route, Redirect } from "react-router-dom";
 import Nav from "./components/layout/Nav";
 import Box from "./components/layout/Box";
@@ -6,7 +5,7 @@ import ContactForm from "./components/form/ContactForm";
 
 function App() {
   return (
-    <Fragment>
+    <>
       <Route path="/" exact>
         <Redirect to="/home" />
       </Route>
@@ -20,7 +19,7 @@ function App() {
         <Nav buttonName="Home" buttonPath="/home" />
         <ContactForm />
       </Route>
-    </Fragment>
+    </>
   );
 }
 

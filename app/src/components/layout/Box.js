@@ -1,4 +1,4 @@
-import { useState, Fragment, useRef } from "react";
+import { useState, useRef } from "react";
 
 import MainForm from "../form/MainForm";
 import Button from "../ui/Button";
@@ -13,8 +13,7 @@ function Box() {
   const numberOfResultsInputRef = useRef();
   const [showForm, setShowForm] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [errorText, setErrorText] = useState(false);
+  const [errorText, setErrorText] = useState(undefined);
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
@@ -29,22 +28,19 @@ function Box() {
       setIsLoading(true);
       try {
         const googleResultList = await googleService.search(queryInput, numberOfResultsInput); 
-        excelUtils.createExcel(googleResultList, queryInput);
-        setShowForm(false);
-        
+
+        await excelUtils.createExcel(googleResultList, queryInput);
+
       } catch(error) {
         console.error(error);
-        setError(true);
         setErrorText("Could not fetch searches");
       }
       setIsLoading(false);
 
     } else if (queryInput.length < 1) {
-      setError(true);
       setErrorText("To fetch searches you need to add a query");
    
     } else if (numberOfResultsInput < 1 || numberOfResultsInput > 99) {
-      setError(true);
       setErrorText("Please enter a search number between 1 and 99");
     }
   };
@@ -52,7 +48,7 @@ function Box() {
   const onDownloadHandler = () => {}; //? may use later on?
 
   const onCloseModal = () => {
-    setError(false);
+    setErrorText(undefined);
   };
 
   const onNewFileHandler = () => {
@@ -63,10 +59,10 @@ function Box() {
     <div className="box">
       <h3> GoogleLinks </h3>
 
-      {error && <ErrorModal error={errorText} onClose={onCloseModal} />}
+      {errorText && <ErrorModal error={errorText} onClose={onCloseModal} />}
 
       {!isLoading && showForm && (
-        <Fragment>
+        <>
           <p>
             Create an excel sheet by entering a query and the number of entries
             you need in the excel sheet
@@ -77,13 +73,13 @@ function Box() {
             numberOfResultsRef={numberOfResultsInputRef}
             onSubmit={onSubmitHandler}
           />
-        </Fragment>
+        </>
       )}
 
       {isLoading && <LoadingSpinner />}
 
       {!isLoading && !showForm && (
-        <Fragment>
+        <>
           <div>
             <p>Thank you for using Google Links!</p>
             <p>
@@ -101,7 +97,7 @@ function Box() {
 
             <Button onClick={onNewFileHandler}>New File</Button>
           </div>
-        </Fragment>
+        </>
       )}
     </div>
   );
