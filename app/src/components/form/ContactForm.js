@@ -2,20 +2,20 @@ import { useRef, useState } from "react";
 import emailjs from "emailjs-com";
 import Button from "../ui/Button";
 import Input from "../ui/Input";
-import ErrorModal from "../ui/ErrorModal";
+import Modal from "../ui/Modal";
 import Form from "./Form";
 import LoadingSpinner from "../ui/LoadingSpinner";
 import "./ContactForm.css";
 
-function ContactForm() {
+function ContactForm() {  
   const nameInputRef = useRef();
   const emailInputRef = useRef();
   const subjectInputRef = useRef();
   const messageInputRef = useRef();
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [errorText, setErrorText] = useState();
+  const [isLoading, setIsLoading] = useState();
+  const [modalText, setModalText] = useState();
+  const [modalType, setModalType] = useState();
 
   const sendEmail = async (event) => {
     event.preventDefault();
@@ -40,40 +40,41 @@ function ContactForm() {
           process.env.REACT_APP_PUBLIC_KEY
         );
         event.target.reset();
+        setModalType('Thank You');
+        setModalText('Your message has been sent. Thank you for contacting me!');
       } catch(error) {
         console.error(error);
-        setError(true);
-        setErrorText("Could not send message");
+        setModalType('Error');
+        setModalText("Could not send message");
       }
       setIsLoading(false);
 
     } else if (name.length <= 0) {
-      setError(true);
-      setErrorText("Please enter your name");
+      setModalType('Error');
+      setModalText("Please enter your name");
     
     } else if (!emailVerificationRegex.test(email)) {
-      setError(true);
-      setErrorText("Please enter a valid email");
+      setModalType('Error');
+      setModalText("Please enter a valid email");
     
     } else if (subject.length <= 0) {
-      setError(true);
-      setErrorText("Please enter the subject of your email");
+      setModalType('Error');
+      setModalText("Please enter the subject of your email");
     
     } else if (message.length <= 0) {
-      setError(true);
-      setErrorText("Please enter your message to me!");
+      setModalType('Error');
+      setModalText("Please enter your message to me!");
     }
   };
 
   const onCloseModal = () => {
-    setError(false);
-  };
+    setModalText(undefined)
+  } ;
 
   return (
     <section className="section">
       <h3>Contact Me</h3>
-
-      {error && <ErrorModal error={errorText} onClose={onCloseModal} />}
+      {modalText && <Modal text={modalText} onClose={onCloseModal} type={modalType}/>}
 
       {isLoading && <LoadingSpinner />}
 

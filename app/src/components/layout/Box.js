@@ -1,8 +1,7 @@
 import { useState, useRef } from "react";
-
 import MainForm from "../form/MainForm";
 import Button from "../ui/Button";
-import ErrorModal from "../ui/ErrorModal";
+import Modal from "../ui/Modal";
 import * as googleService from "../../service/GoogleService";
 import * as excelUtils from "../../service/ExcelUtils";
 import LoadingSpinner from "../ui/LoadingSpinner";
@@ -46,7 +45,7 @@ function Box() {
     }
   };
 
-  const onDownloadHandler = () => {}; //? may use later on?
+  const onDownloadHandler = () => {}; //TODO: make manual download feature?
 
   const onCloseModal = () => {
     setErrorText(undefined);
@@ -60,7 +59,7 @@ function Box() {
     <div className="box">
       <h3> GoogleLinks </h3>
 
-      {errorText && <ErrorModal error={errorText} onClose={onCloseModal} />}
+      {errorText && <Modal text={errorText} onClose={onCloseModal} type='Error' />}
 
       {!isLoading && showForm && (
         <>

@@ -1,4 +1,4 @@
-import {forwardRef} from "react";
+import { forwardRef } from "react";
 import "./Input.css";
 
 const Input = forwardRef(({ input, className }, ref) => {

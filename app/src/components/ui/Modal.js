@@ -1,6 +1,6 @@
-import "./ErrorModal.css";
+import "./Modal.css";
 
-function ErrorModal({ onClose, error }) {
+function Modal({ onClose, text, type }) {
   return (
     <div className="modal-container">
       <div className="modal">
@@ -9,13 +9,13 @@ function ErrorModal({ onClose, error }) {
           <span className="close" onClick={onClose}>
             &times;
           </span>
-          <h2>Error!</h2>
+          <h2>{type}</h2>
         </div>
 
-        <p>{error}</p>
+        <p>{text}</p>
       </div>
     </div>
   );
 }
 
-export default ErrorModal;
+export default Modal;
