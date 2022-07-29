@@ -1,27 +1,28 @@
 import React from "react";
 import Button from "../ui/Button";
 import Input from "../ui/Input";
+import Form from "./Form";
 
-import "./Form.css";
+import "./MainForm.css";
 
-function Form({ onSubmit, queryRef, numberOfResultsRef }) {
+function MainForm({ onSubmit, queryRef, numberOfResultsRef }) {
   return (
-    <form className="form" onSubmit={onSubmit}>
+    <Form onSubmit={onSubmit}>
       <Input
         ref={queryRef}
-        label="Search Query"
         input={{
           id: "query",
           type: "text",
+          label: "Search Query",
         }}
       />
 
       <Input
         ref={numberOfResultsRef}
-        label="Number of Search Results"
         input={{
           id: "search-results",
           type: "number",
+          label: "Number of Search Results",
           min: "1",
           max: "99",
         }}
@@ -30,8 +31,8 @@ function Form({ onSubmit, queryRef, numberOfResultsRef }) {
       <div className="excel-button-div">
         <Button onClick={onSubmit}>Create Excel</Button>
       </div>
-    </form>
+    </Form>
   );
 }
 
-export default Form;
+export default MainForm;

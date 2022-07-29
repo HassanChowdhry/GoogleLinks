@@ -22,6 +22,9 @@
         "no-param-reassign": "off",
         "max-len": "off",
         "no-console": "off",
-        "eslint-disable import/prefer-default-export": "off"
+        "eslint-disable quote-props": "off",
+        "no-use-before-define": "off",
+        "import/extensions": "off",
+        " eslint-disable import/prefer-default-export": "off"
     }
 }

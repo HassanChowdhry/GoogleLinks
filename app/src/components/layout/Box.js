@@ -1,10 +1,11 @@
 import { useState, useRef } from "react";
 
-import Form from "../forms/Form";
+import MainForm from "../form/MainForm";
 import Button from "../ui/Button";
 import ErrorModal from "../ui/ErrorModal";
 import * as googleService from "../../service/GoogleService";
 import * as excelUtils from "../../service/ExcelUtils";
+import LoadingSpinner from "../ui/LoadingSpinner";
 import "./Box.css";
 
 function Box() {
@@ -30,16 +31,16 @@ function Box() {
 
         await excelUtils.createExcel(googleResultList, queryInput);
 
+        setShowForm(false);
       } catch(error) {
         console.error(error);
         setErrorText("Could not fetch searches");
       }
       setIsLoading(false);
-      setShowForm(false);
-  
+
     } else if (queryInput.length < 1) {
       setErrorText("To fetch searches you need to add a query");
-    
+   
     } else if (numberOfResultsInput < 1 || numberOfResultsInput > 99) {
       setErrorText("Please enter a search number between 1 and 99");
     }
@@ -68,7 +69,7 @@ function Box() {
             you need in the excel sheet
           </p>
 
-          <Form
+          <MainForm
             queryRef={queryInputRef}
             numberOfResultsRef={numberOfResultsInputRef}
             onSubmit={onSubmitHandler}
@@ -76,7 +77,7 @@ function Box() {
         </>
       )}
 
-      {isLoading && <div className="loader"/>}
+      {isLoading && <LoadingSpinner />}
 
       {!isLoading && !showForm && (
         <>

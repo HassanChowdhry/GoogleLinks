@@ -1,5 +1,3 @@
-/* eslint-disable quote-props, no-use-before-define, import/extensions */
-/* eslint-disable import/prefer-default-export */
 import fetch from 'node-fetch';
 import inquirer from 'inquirer';
 import dotenv from 'dotenv';
