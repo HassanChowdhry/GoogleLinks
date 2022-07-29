@@ -31,6 +31,7 @@ function Box() {
 
         await excelUtils.createExcel(googleResultList, queryInput);
 
+        setShowForm(false);
       } catch(error) {
         console.error(error);
         setErrorText("Could not fetch searches");
