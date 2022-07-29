@@ -1,4 +1,3 @@
-/* eslint-disable quote-props, no-use-before-define, import/extensions */
 import fetch from 'node-fetch';
 import inquirer from 'inquirer';
 import dotenv from 'dotenv';
@@ -28,7 +27,7 @@ let searchNumber = (await inquirer.prompt({
 // Lets do some magic - API call
 const search = `q=${searchName}&num=${searchNumber}`;
 
-const response = await (await fetch(`https://google-search3.p.rapidapi.com/api/v1/search/${search}`, {
+const response = await (await fetch(`https://google-search3.p.rapidapi.com/api/v1/search/q=${searchName}&num=${searchNumber}`, {
   method: 'GET',
   headers: {
     'x-rapidapi-key': process.env.API_KEY,

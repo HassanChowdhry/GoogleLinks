@@ -1,0 +1,66 @@
+.section {
+  width: 28rem;
+  height: auto;
+  min-height: 500px;  
+  margin: 5rem auto;
+  padding-bottom: 1.5rem;
+  background: #1F2630;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 30px;
+  text-align: center;
+}
+
+.section h3 {
+  text-align: center;
+  padding-top: 2rem;
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 41px;
+}
+
+.message {
+  border-radius: 5px;
+  padding-top: 0.7rem;
+  width: 100%;
+  height: 65px;
+  font-size: large;
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 0.01rem;
+  resize: vertical;
+  outline: none;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: #98A1B1;
+  border: 2px solid #323A46;
+  background: #1F2630;
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+}
+
+.message:focus {
+  box-shadow: 0 0 5px #58864C;
+  padding: 2px 2px 4px 2px;
+  margin: 8px 4px 3px 2px;
+  border: 1px solid #58864C;
+}
+
+.message-label {
+  margin-left: 1rem;
+  position: relative;
+  top: 10px;
+}
+
+.submit-div {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 475px) {
+  .section {
+    width: 22rem;
+  }
+
+}
