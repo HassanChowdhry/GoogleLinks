@@ -27,7 +27,7 @@ let searchNumber = (await inquirer.prompt({
 // Lets do some magic - API call
 const search = `q=${searchName}&num=${searchNumber}`;
 
-const response = await (await fetch(`https://google-search3.p.rapidapi.com/api/v1/search/q=${searchName}&num=${searchNumber}`, {
+const response = await (await fetch(`https://google-search3.p.rapidapi.com/api/v1/search/${search}`, {
   method: 'GET',
   headers: {
     'x-rapidapi-key': process.env.API_KEY,
