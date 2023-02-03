@@ -1,3 +1,4 @@
+import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import Nav from "./components/layout/Nav";
 import Box from "./components/layout/Box";
