@@ -4,8 +4,9 @@ function toExcelArray(searchItemList) {
   const result = searchItemList.map((searchItem) => [
     searchItem.title,
     searchItem.link,
+    searchItem.description,
   ]);
-  result.unshift(["Title", "Links"]);
+  result.unshift(["Title", "Links", "Description"]);
   return result;
 }
 
