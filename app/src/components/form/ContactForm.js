@@ -25,7 +25,7 @@ function ContactForm() {
     let email = emailInputRef.current.value.trim();
     let subject = subjectInputRef.current.value.trim();
     let message = messageInputRef.current.value.trim();
-
+    
     if (
       name.length > 0 &&
       emailVerificationRegex.test(email) &&

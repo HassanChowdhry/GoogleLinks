@@ -46,7 +46,7 @@ function Box() {
     }
   };
 
-  const onDownloadHandler = () => {}; //TODO: make manual download feature?
+  // const onDownloadHandler = () => {}; //TODO: make manual download feature?
 
   const onCloseModal = () => {
     setErrorText(undefined);
@@ -83,11 +83,11 @@ function Box() {
         <>
           <div>
             <p>Thank you for using Google Links!</p>
-            <p>
+            {/* <p>
               If your excel file was not created, click the button below to
               download it manually
             </p>
-            <Button onClick={onDownloadHandler}>Download File</Button>
+            <Button onClick={onDownloadHandler}>Download File</Button> */}
           </div>
 
           <div>
